@@ -1,4 +1,10 @@
 namespace :cucumber_test do
+  desc 'Clobber all generated artefacts'
+  task :clobber do
+    sh "git checkout ."
+    sh "git clean -d -f"
+  end
+
   desc 'Install Cucumber'
   task :install do
     sh "script/generate cucumber"
@@ -14,9 +20,6 @@ namespace :cucumber_test do
     sh "script/generate rspec_scaffold post title:string body:text published:boolean"
   end
   
-  desc 'Clobber all generated artefacts'
-  task :clobber do
-    sh "git checkout ."
-    sh "git clean -d -f"
-  end
+  desc 'Test everything'
+  task :all => [:clobber, :install, :generate_feature, :generate_scaffold, 'db:migrate', :features]
 end
