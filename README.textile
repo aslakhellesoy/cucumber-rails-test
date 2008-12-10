@@ -1,0 +1,12 @@
+This is a completely bare-bones Rails app that serves one single purpose:
+
+h2. Test that Cucumber works with Ruby on Rails
+
+Here is how:
+
+<pre>git clone git://github.com/aslakhellesoy/cucumber_rails.git
+cd cucumber_rails
+rake cucumber_test:all
+</pre>
+
+If it's green, everything is OK. If not, you should see red.
