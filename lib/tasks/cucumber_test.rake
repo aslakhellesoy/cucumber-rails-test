@@ -21,5 +21,8 @@ namespace :cucumber_test do
   end
   
   desc 'Test everything'
-  task :all => [:clobber, :install, :generate_feature, :generate_scaffold, 'db:migrate', :features]
+  task :all => [:clobber, :install, :generate_feature, :generate_scaffold, 'db:migrate'] do
+    # The features task doesn't exist a priori, so we execute it here.
+    sh "rake features"
+  end
 end
