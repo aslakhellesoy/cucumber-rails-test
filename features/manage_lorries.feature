@@ -7,7 +7,7 @@ Feature: Manage lorries
     Given I am on the new lorry page
     When I fill in "Name" with "name 1"
     And I press "Create"
-    Then I should see "name 1"
+    Then I should see "name 1 - this is from before filter"
 
   Scenario: Delete lorry
     Given the following lorries:

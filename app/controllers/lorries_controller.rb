@@ -1,4 +1,6 @@
 class LorriesController < ApplicationController
+  before_filter :create_suffix, :only => :create
+
   # GET /lorries
   # GET /lorries.xml
   def index
@@ -40,6 +42,7 @@ class LorriesController < ApplicationController
   # POST /lorries
   # POST /lorries.xml
   def create
+    params[:lorry][:name] << @suffix
     @lorry = Lorry.new(params[:lorry])
 
     respond_to do |format|
@@ -81,5 +84,11 @@ class LorriesController < ApplicationController
       format.html { redirect_to(lorries_url) }
       format.xml  { head :ok }
     end
+  end
+
+private
+
+  def create_suffix
+    @suffix = " - this is from before filter"
   end
 end
