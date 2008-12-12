@@ -6,7 +6,22 @@ Here is how:
 
 <pre>git clone git://github.com/aslakhellesoy/cucumber_rails.git
 cd cucumber_rails
+git submodule init
+git submodule update
+
+# Get the most recent Cucumber - the submodule def might point to an older version
+pushd vendor/plugins/cucumber
+git checkout master
+git pull origin master
+popd
+
 rake cucumber_test:all
 </pre>
 
 If it's green, everything is OK. If not, you should see red.
+
+This will use whatever Rails gem you have installed. 
+If you want to run against the Rails Edge, get the latest Rails in a similar fashion to getting
+the latest Cucumber. Then make a symlink from rails to edge_rails and run the tests again.
+
+TODO: Rename to rails and just checkout the tag.
