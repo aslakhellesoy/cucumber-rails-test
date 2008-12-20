@@ -23,7 +23,9 @@ namespace :cucumber_test do
   
   rails_tags.each do |tag|
     task :checkout do
-      system "git checkout #{tag}"
+      Dir.chdir("vendor/rails") do
+        system "git checkout #{tag}"
+      end
     end
     
     desc "Test with Rails #{tag}"
