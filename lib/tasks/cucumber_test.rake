@@ -5,24 +5,31 @@ namespace :cucumber_test do
     sh "git clean -d -f"
   end
 
-  desc 'Install Cucumber'
   task :install do
     sh "script/generate cucumber"
   end
   
-  desc 'Generate a feature'
   task :generate_feature do
     sh "script/generate feature post title:string body:text published:boolean"
   end
 
-  desc 'Generate scaffolding'
   task :generate_scaffold do
     sh "script/generate rspec_scaffold post title:string body:text published:boolean"
   end
   
-  desc 'Test everything'
-  task :all => [:clobber, :install, :generate_feature, :generate_scaffold, 'db:migrate'] do
-    # The features task doesn't exist a priori, so we execute it here.
-    sh "rake features"
+  rails_tags = Dir.chdir("vendor/rails") do
+    `git tag`.split("\n")[-5..-1] << 'master'
+  end
+  
+  rails_tags.each do |tag|
+    task :checkout do
+      system "git checkout #{tag}"
+    end
+    
+    desc "Test with Rails #{tag}"
+    task tag.to_sym => [:clobber, :checkout, :install, :generate_feature, :generate_scaffold, 'db:migrate'] do
+      # The features task doesn't exist a priori, so we execute it here.
+      sh "rake features"
+    end
   end
 end

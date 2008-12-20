@@ -18,7 +18,11 @@ popd
 # Install gems
 sudo gem install aslakhellesoy-webrat rspec rspec-rails
 
-rake cucumber_test:all
+# See available tasks
+rake -T cucumber
+
+# Test with e.g Rails 2.2.2
+rake cucumber_test:v2.2.2
 </pre>
 
 If it's green, everything is OK. If not, you should see red.
