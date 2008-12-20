@@ -15,6 +15,9 @@ git checkout master
 git pull origin master
 popd
 
+# Install gems
+sudo gem install aslakhellesoy-webrat rspec rspec-rails
+
 rake cucumber_test:all
 </pre>
 
