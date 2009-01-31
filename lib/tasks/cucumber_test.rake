@@ -1,6 +1,6 @@
 namespace :cucumber_test do
   rails_tags = Dir.chdir("vendor/rails") do
-    `git tag`.split("\n").reject{|tag| !tag.match(/^\d+\.\d+\.\d+$/)}[-12..-1] << 'master'
+    `git tag`.split("\n").reject{|tag| !tag.match(/^v\d+\.\d+\.\d+$/)}[-12..-1] << 'master'
   end
 
   desc "Test with Rails #{rails_tags.inspect}"
