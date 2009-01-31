@@ -1,7 +1,5 @@
 namespace :cucumber_test do
-  rails_tags = Dir.chdir("vendor/rails") do
-    `git tag`.split("\n").reject{|tag| !tag.match(/^v\d+\.\d+\.\d+$/)}[-12..-1] << 'master'
-  end
+  rails_tags = ["v2.1.0", "v2.1.1", "v2.1.2", "v2.2.0", "v2.2.1", "v2.2.2", "master"]
 
   desc "Test with Rails #{rails_tags.inspect}"
   task :all => rails_tags.map{|tag| "#{tag}:test"}
