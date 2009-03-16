@@ -4,7 +4,7 @@ Feature: Manage lorries
   wants [behaviour]
   
   Scenario: Register new lorry
-    Given I am on the new lorry page
+    Given I have gone to the new lorry page
     When I fill in "Name" with "name 1"
     And I press "Create"
     Then I should see "name 1 - this is from before filter"

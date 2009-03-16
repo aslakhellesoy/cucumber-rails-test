@@ -1,4 +1,4 @@
-Given /I am on the new lorry page/ do
+Given /I have gone to the new lorry page/ do
   visit "/lorries/new"
 end
 
