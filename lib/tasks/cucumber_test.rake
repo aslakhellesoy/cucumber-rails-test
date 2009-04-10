@@ -7,7 +7,9 @@ namespace :cucumber_test do
   rails_tags.each do |tag|
     namespace tag do
       desc "Test with Rails #{tag}"
-      task :test => [:banner, :clobber, :checkout, :install, :generate_feature, :generate_scaffold, :migrate] do
+      task :test => [:banner, :clobber, :checkout, :install,
+                    :generate_feature, :generate_scaffold, :add_sanity_check_for_transactional_fixtures,
+                    :migrate] do
         # The features task doesn't exist a priori, so we execute it here.
         sh "rake features"
       end
@@ -35,6 +37,35 @@ namespace :cucumber_test do
 
       task :generate_feature do
         sh "script/generate feature post title:string body:text published:boolean"
+      end
+
+      task :add_sanity_check_for_transactional_fixtures do
+        File.open("features/manage_posts.feature", "a") do |feature|
+          feature.puts(<<-END_OF_SCENARIO)
+
+          Scenario: ensure use_transactional_fixtures is working and rolling DB back
+            Given I have not created any posts in this scenario
+            But the previous scenarios have
+            Then there should be 0 posts
+          END_OF_SCENARIO
+        end
+
+        File.open("features/step_definitions/post_steps.rb", "a") do |definitions|
+          definitions.puts(<<-END_OF_DEFINITIONS)
+            Given /^I have not created any posts in this scenario$/ do
+              # no-op
+            end
+
+            Given /^the previous scenarios have$/ do
+              # no-op
+            end
+
+            Then /^there should be 0 posts$/ do
+              Post.count.should == 0
+            end
+          END_OF_DEFINITIONS
+        end
+
       end
 
       task :generate_scaffold do
