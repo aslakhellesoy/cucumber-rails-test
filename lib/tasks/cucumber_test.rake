@@ -9,7 +9,7 @@ namespace :cucumber_test do
       desc "Test with Rails #{tag}"
       task :test => [:banner, :clobber, :checkout, :install, :generate_feature, :generate_scaffold, :migrate] do
         # The features task doesn't exist a priori, so we execute it here.
-        sh "rake features"
+        sh "#{$0} features"
       end
 
       task :banner do
@@ -42,7 +42,7 @@ namespace :cucumber_test do
       end
 
       task :migrate do
-        sh "rake db:migrate"
+        sh "#{$0} db:migrate"
       end
     end
   end
