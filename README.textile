@@ -21,14 +21,9 @@ sudo gem install aslakhellesoy-webrat rspec rspec-rails
 # See available tasks
 rake -T cucumber
 
-# Test with e.g Rails 2.2.2
-rake cucumber_test:v2.2.2
+# Test with e.g Rails 2.2.2 - this will checkout the tagged rails version
+rake cucumber_test:v2.2.2:test
 </pre>
 
 If it's green, everything is OK. If not, you should see red.
 
-This will use whatever Rails gem you have installed. 
-If you want to run against the Rails Edge, get the latest Rails in a similar fashion to getting
-the latest Cucumber. Then make a symlink from rails to edge_rails and run the tests again.
-
-TODO: Rename to rails and just checkout the tag.
