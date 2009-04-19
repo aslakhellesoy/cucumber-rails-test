@@ -23,7 +23,7 @@ Then /^I should see the following lorries:$/ do |lorries|
   end
 end
 
-Given /^I have not created any posts in this scenario$/ do
+Given /^I have not created any lorries in this scenario$/ do
   # no-op
 end
 
