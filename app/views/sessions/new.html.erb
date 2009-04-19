@@ -1,0 +1,16 @@
+<% form_tag sessions_path, :method => :post, :class => 'loginform' do %>
+	<fieldset>
+		<div class='legend'>Log In:</div>
+		<div>
+			<%= label_tag "username", "Username", :id => 'username_label' %>
+			<%= text_field_tag :username, params[:username] %>
+		</div>
+		<div>
+			<%= label_tag "password", "Password", :id => 'password_label' %>
+			<%= password_field_tag :password, params[:password] %>
+		</div>
+		<div>
+			<%= submit_tag "Go" %>
+		</div>
+	</fieldset>
+<% end %>
