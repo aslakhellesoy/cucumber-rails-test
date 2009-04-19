@@ -22,3 +22,15 @@ Then /^I should see the following lorries:$/ do |lorries|
     end
   end
 end
+
+Given /^I have not created any posts in this scenario$/ do
+  # no-op
+end
+
+Given /^the previous scenarios have$/ do
+  # no-op
+end
+
+Then /^there should be 0 posts$/ do
+  Lorry.count.should == 0
+end

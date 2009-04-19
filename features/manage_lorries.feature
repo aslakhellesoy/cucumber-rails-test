@@ -22,3 +22,8 @@ Feature: Manage lorries
       |name 1|
       |name 2|
       |name 4|
+
+  Scenario: ensure use_transactional_fixtures is working and rolling DB back
+    Given I have not created any lorries in this scenario
+    But the previous scenarios have
+    Then there should be 0 lorries
