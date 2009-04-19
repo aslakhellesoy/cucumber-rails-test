@@ -31,6 +31,6 @@ Given /^the previous scenarios have$/ do
   # no-op
 end
 
-Then /^there should be 0 posts$/ do
+Then /^there should be 0 lorries$/ do
   Lorry.count.should == 0
 end
