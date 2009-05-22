@@ -16,7 +16,7 @@ git pull origin master
 popd
 
 # Install gems
-sudo gem install aslakhellesoy-webrat rspec rspec-rails
+sudo gem install webrat rspec rspec-rails
 
 # See available tasks
 rake -T cucumber
