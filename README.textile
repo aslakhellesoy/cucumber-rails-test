@@ -27,3 +27,7 @@ rake cucumber_test:v2.2.2:test
 
 If it's green, everything is OK. If not, you should see red.
 
+h2. Adding new features
+
+The <code>cucumber_test:*</code> tasks will *REVERT ALL LOCAL CHANGES* when run. Therefore, if you're modifying things, I recommend you don't run this task, but <code>rake features</code> instead. Then *MAKE SURE YOU ADD AND COMMIT* the files you changed before you run any of the <code>cucumber_test:*</code> tasks again. Make sure you don't add too much. The files that are generated should *not* be added to Git.
+
