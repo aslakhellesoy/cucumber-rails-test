@@ -11,7 +11,7 @@ namespace :cucumber_test do
                     :generate_feature, :generate_scaffold,
                     :migrate] do
         # The features task doesn't exist a priori, so we execute it here.
-        sh "#{$0} features RAILS_ENV=cucumber"
+        sh "#{$0} features"
       end
 
       task :banner do
@@ -44,7 +44,7 @@ namespace :cucumber_test do
       end
 
       task :migrate do
-        sh "#{$0} db:migrate RAILS_ENV=cucumber"
+        sh "#{$0} db:migrate"
       end
     end
   end
