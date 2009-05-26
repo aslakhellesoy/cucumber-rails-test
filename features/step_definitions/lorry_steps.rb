@@ -4,6 +4,7 @@ end
 
 Given /^the following lorries:$/ do |lorries|
   Lorry.create!(lorries.hashes)
+  Lorry.should have(lorries.hashes.length).records
 end
 
 When /^I delete the (\d+)(?:st|nd|rd|th) lorry$/ do |pos|
