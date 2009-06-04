@@ -32,7 +32,7 @@ namespace :cucumber_test do
       end
 
       task :install do
-        sh "script/generate cucumber"
+        sh "script/generate cucumber #{ENV['CUCUMBER_GENERATE_OPTS']}"
       end
 
       task :generate_feature do

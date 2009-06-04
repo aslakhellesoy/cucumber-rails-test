@@ -23,6 +23,9 @@ rake -T cucumber
 
 # Test with e.g Rails 2.2.2 - this will checkout the tagged rails version
 rake cucumber_test:v2.2.2:test
+
+# To test with Spork:
+CUCUMBER_GENERATE_OPTS=--spork rake cucumber_test:v2.2.2:test
 </pre>
 
 If it's green, everything is OK. If not, you should see red.
