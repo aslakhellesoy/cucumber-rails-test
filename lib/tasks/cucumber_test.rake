@@ -10,8 +10,8 @@ namespace :cucumber_test do
       task :test => [:banner, :clobber, :checkout, :install,
                     :generate_feature, :generate_scaffold,
                     :migrate] do
-        # The features task doesn't exist a priori, so we execute it here.
-        sh "#{$0} features"
+        # The cucumber task doesn't exist a priori, so we execute it here.
+        sh "#{$0} cucumber"
       end
 
       task :banner do
