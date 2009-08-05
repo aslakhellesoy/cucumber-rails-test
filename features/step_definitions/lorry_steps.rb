@@ -33,6 +33,9 @@ Given /^the previous scenarios have$/ do
   # no-op
 end
 
+Given /I have 45 pink lorries/ do
+end
+
 Then /^there should be 0 lorries$/ do
   Lorry.count.should == 0
 end

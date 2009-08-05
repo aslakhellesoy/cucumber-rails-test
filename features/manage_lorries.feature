@@ -27,3 +27,7 @@ Feature: Manage lorries
     Given I have not created any lorries in this scenario
     But the previous scenarios have
     Then there should be 0 lorries
+  
+  @wip
+  Scenario: This is currently failing
+    Given I have 45 pink lorries
