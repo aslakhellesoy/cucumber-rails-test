@@ -11,7 +11,7 @@ namespace :cucumber_test do
                     :generate_feature, :generate_scaffold,
                     :migrate] do
         # The cucumber task doesn't exist a priori, so we execute it here.
-        sh "#{$0} cucumber"
+        sh "#{$0} cucumber:all"
       end
 
       task :banner do
