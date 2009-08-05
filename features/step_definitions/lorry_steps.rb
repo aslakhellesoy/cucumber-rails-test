@@ -34,6 +34,7 @@ Given /^the previous scenarios have$/ do
 end
 
 Given /I have 45 pink lorries/ do
+  raise "This is failing"
 end
 
 Then /^there should be 0 lorries$/ do
