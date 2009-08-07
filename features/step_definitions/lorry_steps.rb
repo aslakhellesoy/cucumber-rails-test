@@ -15,14 +15,18 @@ When /^I delete the (\d+)(?:st|nd|rd|th) lorry$/ do |pos|
   end
 end
 
-Then /^I should see the following lorries:$/ do |lorries|
-  lorries.raw[1..-1].each_with_index do |row, i|
-    row.each_with_index do |cell, j|
-      response.should have_selector("table > tr:nth-child(#{i+2}) > td:nth-child(#{j+1})") { |td|
-        td.inner_text.should == cell
-      }
-    end
-  end
+Then /^I should see the following lorries:$/ do |expected_lorries_table|
+  expected_lorries_table.map_headers!(/name/ => 'Name', /colour/ => 'Colour')
+  expected_lorries_table.diff!(element_at('table').to_table)
+  expected_lorries_table.diff!(table_at('table').to_a) # Check that the old way is still working
+end
+
+Then /^I should see the following lorries in a definition list:$/ do |expected_lorries_table|
+  expected_lorries_table.diff!(element_at('dl#lorry_dl').to_table)
+end
+
+Then /^I should see the following lorries in an ordered list:$/ do |expected_lorries_table|
+  expected_lorries_table.diff!(element_at('ol#lorry_ol').to_table)
 end
 
 Given /^I have not created any lorries in this scenario$/ do

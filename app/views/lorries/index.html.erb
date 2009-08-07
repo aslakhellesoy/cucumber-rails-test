@@ -3,11 +3,13 @@
 <table>
   <tr>
     <th>Name</th>
+    <th>Colour</th>
   </tr>
 
 <% for lorry in @lorries %>
   <tr>
     <td><%=h lorry.name %></td>
+    <td><%=h lorry.colour %></td>
     <td><%= link_to 'Show', lorry %></td>
     <td><%= link_to 'Edit', edit_lorry_path(lorry) %></td>
     <td><%= link_to 'Destroy', lorry, :confirm => 'Are you sure?', :method => :delete %></td>
@@ -16,5 +18,18 @@
 </table>
 
 <br />
+
+<dl id="lorry_dl">
+  <% @lorries.each do |lorry| %>
+    <dt><%=h lorry.name %></dt>
+    <dd><%=h lorry.colour %></dd>
+  <% end %>
+</dl>
+
+<ol id="lorry_ol">
+  <% @lorries.each do |lorry| %>
+    <li><%=h lorry.name %></li>
+  <% end %>
+</ol>
 
 <%= link_to 'New lorry', new_lorry_path %>
