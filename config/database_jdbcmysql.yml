@@ -1,0 +1,29 @@
+development:
+  adapter: jdbcmysql
+  encoding: utf8
+  reconnect: false
+  database: cucumber_development
+  pool: 5
+  username: root
+  password:
+  socket: /tmp/mysql.sock
+
+test:
+  adapter: jdbcmysql
+  encoding: utf8
+  reconnect: false
+  database: cucumber_test
+  pool: 5
+  username: root
+  password:
+  socket: /tmp/mysql.sock
+
+production:
+  adapter: jdbcmysql
+  encoding: utf8
+  reconnect: false
+  database: cucumber_production
+  pool: 5
+  username: root
+  password: 
+  socket: /tmp/mysql.sock

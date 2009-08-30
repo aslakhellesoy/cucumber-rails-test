@@ -7,9 +7,16 @@ namespace :cucumber_test do
   rails_tags.each do |tag|
     namespace tag do
       desc "Test with Rails #{tag}"
-      task :test => [:banner, :clobber, :checkout, :install,
-                    :generate_feature, :generate_scaffold,
-                    :migrate] do
+      task :test => [
+        :banner, 
+        :clobber, 
+        :checkout,
+        :database_yml, 
+        :install,
+        :generate_feature,
+        :generate_scaffold,
+        :migrate
+      ] do
         # The cucumber task doesn't exist a priori, so we execute it here.
         sh "#{$0} cucumber:all"
       end
@@ -28,6 +35,14 @@ namespace :cucumber_test do
       task :checkout do
         Dir.chdir("vendor/rails") do
           system "git checkout #{tag}"
+        end
+      end
+
+      task :database_yml do
+        if defined?(JRUBY_VERSION)
+          cp 'congig/database_jdbcmysql.yml', 'congig/database.yml'
+        else
+          cp 'congig/database_sqlite3.yml', 'congig/database.yml'
         end
       end
 
