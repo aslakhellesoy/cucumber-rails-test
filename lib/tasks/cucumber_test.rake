@@ -44,8 +44,10 @@ namespace :cucumber_test do
       task :database_yml do
         if defined?(JRUBY_VERSION)
           cp 'config/database_jdbcmysql.yml', 'config/database.yml'
-          sh "#{$0} db:drop:all" rescue nil
-          sh "#{$0} db:create:all"
+          %w{development test}.each do |db|
+            sh "mysqladmin -u root -f drop cucumber_#{db}" rescue nil
+            sh "mysqladmin -u root create cucumber_#{db}"
+          end
         else
           cp 'config/database_sqlite3.yml', 'config/database.yml'
         end
