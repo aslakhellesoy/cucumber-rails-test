@@ -40,9 +40,9 @@ namespace :cucumber_test do
 
       task :database_yml do
         if defined?(JRUBY_VERSION)
-          cp 'congig/database_jdbcmysql.yml', 'congig/database.yml'
+          cp 'config/database_jdbcmysql.yml', 'config/database.yml'
         else
-          cp 'congig/database_sqlite3.yml', 'congig/database.yml'
+          cp 'config/database_sqlite3.yml', 'config/database.yml'
         end
       end
 
