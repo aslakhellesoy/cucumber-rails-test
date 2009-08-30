@@ -1,3 +1,6 @@
+require 'rbconfig'
+RUBY_BINARY   = File.join(Config::CONFIG['bindir'], Config::CONFIG['ruby_install_name'])
+
 namespace :cucumber_test do
   rails_tags = ["v2.1.0", "v2.1.1", "v2.1.2", "v2.2.0", "v2.2.1", "v2.2.2", "v2.3.2", "v2.3.3"]
 
@@ -47,15 +50,15 @@ namespace :cucumber_test do
       end
 
       task :install do
-        sh "script/generate cucumber #{ENV['CUCUMBER_GENERATE_OPTS']}"
+        sh "#{RUBY_BINARY} script/generate cucumber #{ENV['CUCUMBER_GENERATE_OPTS']}"
       end
 
       task :generate_feature do
-        sh "script/generate feature post title:string body:text published:boolean"
+        sh "#{RUBY_BINARY} script/generate feature post title:string body:text published:boolean"
       end
 
       task :generate_scaffold do
-        sh "script/generate rspec_scaffold post title:string body:text published:boolean"
+        sh "#{RUBY_BINARY} script/generate rspec_scaffold post title:string body:text published:boolean"
       end
 
       task :migrate do
