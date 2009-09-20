@@ -78,6 +78,11 @@ class LorriesController < ApplicationController
   # DELETE /lorries/1.xml
   def destroy
     @lorry = Lorry.find(params[:id])
+
+    if @lorry.colour == "blue"
+      raise "Are you crazy? You can't destroy a blue lorry!!"
+    end
+
     @lorry.destroy
 
     respond_to do |format|

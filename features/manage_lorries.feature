@@ -41,7 +41,7 @@ Feature: Manage lorries
     Given I have 45 pink lorries
 
   @wip
-  Scenario: Delete the 4th magic lorry, which always raises an error
+  Scenario: Delete the blue lorry, which is magic and always raises an error
     Given the following lorries:
       | name   | colour |
       | name 1 | green  |
