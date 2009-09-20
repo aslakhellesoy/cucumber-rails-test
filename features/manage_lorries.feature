@@ -35,11 +35,18 @@ Feature: Manage lorries
     Given I have not created any lorries in this scenario
     But the previous scenarios have
     Then there should be 0 lorries
-  
-  @wip
-  Scenario: This is currently failing
-    Given I have 45 pink lorries
 
+  @allow_rescue
+  Scenario: Delete the blue lorry, which is magic and always raises an error, but allow rescue
+    Given the following lorries:
+      | name   | colour |
+      | name 1 | green  |
+      | name 2 | yellow |
+      | name 3 | pink   |
+      | name 4 | blue   |
+    When I delete the 4th lorry and deal with the expected error
+    Then I should see "rails"
+  
   @wip
   Scenario: Delete the blue lorry, which is magic and always raises an error
     Given the following lorries:
@@ -49,3 +56,8 @@ Feature: Manage lorries
       | name 3 | pink   |
       | name 4 | blue   |
     When I delete the 4th lorry
+
+  @wip
+  Scenario: This is currently failing
+    Given I have 45 pink lorries
+

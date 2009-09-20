@@ -15,6 +15,14 @@ When /^I delete the (\d+)(?:st|nd|rd|th) lorry$/ do |pos|
   end
 end
 
+When /^I delete the 4th lorry and deal with the expected error$/ do
+  begin
+    When %{I delete the 4th lorry}
+    raise "This should have raised an error"
+  rescue Webrat::PageLoadError => expected
+  end
+end
+
 Then /^I should see the following lorries:$/ do |expected_lorries_table|
   expected_lorries_table.map_headers!(/name/ => 'Name', /colour/ => 'Colour')
   expected_lorries_table.diff!(element_at('table').to_table)
