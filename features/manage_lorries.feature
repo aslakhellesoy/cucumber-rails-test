@@ -39,3 +39,13 @@ Feature: Manage lorries
   @wip
   Scenario: This is currently failing
     Given I have 45 pink lorries
+
+  @wip
+  Scenario: Delete the 4th magic lorry, which always raises an error
+    Given the following lorries:
+      | name   | colour |
+      | name 1 | green  |
+      | name 2 | yellow |
+      | name 3 | pink   |
+      | name 4 | blue   |
+    When I delete the 4th lorry
