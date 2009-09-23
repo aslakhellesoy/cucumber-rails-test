@@ -1,6 +1,6 @@
 Feature: Manage Lorries without transactions
 
-  @no_txn
+  @no-txn
   Scenario: Delete lorry
     Given the following lorries:
       | name   | colour |
@@ -10,7 +10,7 @@ Feature: Manage Lorries without transactions
       | name 4 | blue   |
 
   @clean_lorries_afterwards
-  @no_txn
+  @no-txn
   Scenario: ensure @no_txn is working not rolling back DB
     Given I have not created any lorries in this scenario
     But the previous scenarios have
