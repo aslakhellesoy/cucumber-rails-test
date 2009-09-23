@@ -36,7 +36,7 @@ Feature: Manage lorries
     But the previous scenarios have
     Then there should be 0 lorries
 
-  @allow_rescue
+  @allow-rescue
   Scenario: Delete the blue lorry, which is magic and always raises an error, but allow rescue
     Given the following lorries:
       | name   | colour |

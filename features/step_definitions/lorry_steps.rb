@@ -49,6 +49,6 @@ Given /I have 45 pink lorries/ do
   raise "This is failing"
 end
 
-Then /^there should be 0 lorries$/ do
-  Lorry.count.should == 0
+Then /^there should be (.*) lorries$/ do |n|
+  Lorry.count.should == n.to_i
 end
