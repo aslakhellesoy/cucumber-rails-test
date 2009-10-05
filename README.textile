@@ -16,9 +16,12 @@ and pull changes after that. If you'd like to start fresh, just delete the vendo
 and vendor/plugins/cucumber directories and run rake again.
 
 To Test with a specific version of Rails, e.g. 2.2.2:
-<pre>rake cucumber_test:update # Make sure you have a vendored copy of Rails and Cucumber
+<pre># Make sure you have a vendored copy of Rails and Cucumber
+rake cucumber_test:update
 rake cucumber_test:v2.2.2:test
-# Test test with Spork:
+</pre>
+
+</pre># Test test with Spork:
 CUCUMBER_GENERATE_OPTS=--spork rake cucumber_test:v2.2.2:test
 </pre>
 
