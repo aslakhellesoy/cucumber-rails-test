@@ -1,6 +1,6 @@
 Given /I have gone to the new lorry page/ do
   visit "/lorries/new"
-  true.should be_true
+  true.should be_false
 end
 
 Given /^the following lorries:$/ do |lorries|
