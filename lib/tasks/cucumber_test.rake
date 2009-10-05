@@ -1,39 +1,34 @@
 require 'rbconfig'
 RUBY_BINARY   = File.join(Config::CONFIG['bindir'], Config::CONFIG['ruby_install_name'])
-VENDOR_RAILS = RAILS_ROOT + "/vendor/rails"
-VENDOR_CUCUMBER = RAILS_ROOT + "/vendor/plugins/cucumber"
 
 namespace :cucumber_test do
-  task :clone_rails do
-    unless File.exist?(VENDOR_RAILS)
-      puts "Vendoring Rails..."
-      sh "git clone git://github.com/rails/rails.git #{VENDOR_RAILS}"
+  deps = {
+    "rails" => ["git://github.com/rails/rails.git", "/vendor/rails"],
+    "cucumber" => ["git://github.com/aslakhellesoy/cucumber.git", "/vendor/plugins/cucumber"]
+  }
+
+  deps.each_pair do |name, (repo, path)|
+    path = RAILS_ROOT + path
+
+    desc "Vendor #{name}"
+    task "vendor_#{name}" do
+      unless File.exist?(path)
+        sh "git clone #{repo} #{path}"
+      end
+    end
+
+    desc "Update vendored #{name}, vendoring it first if it doesn't exist"
+    task "update_#{name}" => "vendor_#{name}" do
+      Dir.chdir(path) do
+        sh "git checkout master"
+        sh "git pull origin master"
+      end
     end
   end
 
-  task :clone_cucumber do
-    unless File.exist?(VENDOR_CUCUMBER)
-      puts "Vendoring Cucumber..."
-      sh "git clone git://github.com/aslakhellesoy/cucumber.git #{VENDOR_CUCUMBER}"
-    end
-  end
-
-  task :pull_rails => :clone_rails do
-    puts "Updating vendored rails..."
-    Dir.chdir(VENDOR_RAILS) do
-      sh "git pull origin master"
-    end
-  end
-
-  task :pull_cucumber => :clone_cucumber do
-    puts "Updating vendored cucumber..."
-    Dir.chdir(VENDOR_CUCUMBER) do
-      sh "git pull origin master"
-    end
-  end
-
-  task :pull => [:pull_rails, :pull_cucumber]
-
+  desc "Update vendored versions of rails and cucumber"
+  task :update => [:update_rails, :update_cucumber]
+  
   rails_tags = ["v2.1.0", "v2.1.1", "v2.1.2", "v2.2.0", "v2.2.1", "v2.2.2", "v2.3.2", "v2.3.3"]
 
   desc "Test with Rails #{rails_tags.inspect}"
