@@ -21,7 +21,7 @@ rake cucumber_test:update
 rake cucumber_test:v2.2.2:test
 </pre>
 
-</pre># Test test with Spork:
+<pre># Test with Spork:
 CUCUMBER_GENERATE_OPTS=--spork rake cucumber_test:v2.2.2:test
 </pre>
 
