@@ -18,14 +18,13 @@ and vendor/plugins/cucumber directories and run rake again.
 To Test with a specific version of Rails, e.g. 2.2.2:
 <pre>rake cucumber_test:update # Make sure you have a vendored copy of Rails and Cucumber
 rake cucumber_test:v2.2.2:test
-
 # Test test with Spork:
 CUCUMBER_GENERATE_OPTS=--spork rake cucumber_test:v2.2.2:test
 </pre>
 
 If it's green, everything is OK. If not, you should see red.
 
-To see a list of all available tasks, run rake -T cucumber_test
+To see a list of all available testing tasks, run <code>rake -T cucumber_test</code>
 
 h2. Adding new features
 
