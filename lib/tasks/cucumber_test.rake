@@ -2,7 +2,34 @@ require 'rbconfig'
 RUBY_BINARY   = File.join(Config::CONFIG['bindir'], Config::CONFIG['ruby_install_name'])
 
 namespace :cucumber_test do
-  rails_tags = ["v2.1.0", "v2.1.1", "v2.1.2", "v2.2.0", "v2.2.1", "v2.2.2", "v2.3.2", "v2.3.3", "v2.3.4"]
+  deps = {
+    "rails" => ["git://github.com/rails/rails.git", "/vendor/rails"],
+    "cucumber" => ["git://github.com/aslakhellesoy/cucumber.git", "/vendor/plugins/cucumber"]
+  }
+
+  deps.each_pair do |name, (repo, path)|
+    path = RAILS_ROOT + path
+
+    desc "Vendor #{name}"
+    task "vendor_#{name}" do
+      unless File.exist?(path)
+        sh "git clone #{repo} #{path}"
+      end
+    end
+
+    desc "Update vendored #{name}, vendoring it first if it doesn't exist"
+    task "update_#{name}" => "vendor_#{name}" do
+      Dir.chdir(path) do
+        sh "git checkout master"
+        sh "git pull origin master"
+      end
+    end
+  end
+
+  desc "Update vendored versions of rails and cucumber"
+  task :update => [:update_rails, :update_cucumber]
+  
+  rails_tags = ["v2.1.0", "v2.1.1", "v2.1.2", "v2.2.0", "v2.2.1", "v2.2.2", "v2.3.2", "v2.3.3"]
 
   desc "Test with Rails #{rails_tags.inspect}"
   task :all => rails_tags.map{|tag| "#{tag}:test"}

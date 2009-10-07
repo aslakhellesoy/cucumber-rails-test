@@ -1,9 +1,0 @@
-[submodule "vendor/plugins/cucumber"]
-	path = vendor/plugins/cucumber
-	url = git://github.com/aslakhellesoy/cucumber.git
-[submodule "vendor/edge_rails"]
-	path = vendor/edge_rails
-	url = git://github.com/rails/rails.git
-[submodule "vendor/rails"]
-	path = vendor/rails
-	url = git://github.com/rails/rails.git

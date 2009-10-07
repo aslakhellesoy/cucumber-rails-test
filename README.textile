@@ -4,31 +4,30 @@ h2. Test that Cucumber works with Ruby on Rails
 
 Here is how:
 
-<pre>git clone git://github.com/aslakhellesoy/cucumber_rails.git
-cd cucumber_rails
-git submodule init
-git submodule update
-
-# Get the most recent Cucumber - the submodule def might point to an older version
-pushd vendor/plugins/cucumber
-git checkout master
-git pull origin master
-popd
-
-# Install gems
+<pre># Install gems
 sudo gem install webrat rspec rspec-rails
+git clone git://github.com/aslakhellesoy/cucumber_rails.git
+cd cucumber_rails
+rake
+</pre>
 
-# See available tasks
-rake -T cucumber
+The default task will vendor copies of Rails and Cucumber the first time it is run,
+and pull changes after that. If you'd like to start fresh, just delete the vendor/rails
+and vendor/plugins/cucumber directories and run rake again.
 
-# Test with e.g Rails 2.2.2 - this will checkout the tagged rails version
+To Test with a specific version of Rails, e.g. 2.2.2:
+<pre># Make sure you have a vendored copy of Rails and Cucumber
+rake cucumber_test:update
 rake cucumber_test:v2.2.2:test
+</pre>
 
-# To test with Spork:
+<pre># Test with Spork:
 CUCUMBER_GENERATE_OPTS=--spork rake cucumber_test:v2.2.2:test
 </pre>
 
 If it's green, everything is OK. If not, you should see red.
+
+To see a list of all available testing tasks, run <code>rake -T cucumber_test</code>
 
 h2. Adding new features
 
