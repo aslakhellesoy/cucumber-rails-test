@@ -34,7 +34,7 @@ namespace :cucumber_test do
   desc "Test with Rails #{rails_tags.inspect}"
   task :all => rails_tags.map{|tag| "#{tag}:test"}
 
-  rails_tags.each do |tag|
+  rails_tags.reverse.each do |tag|
     namespace tag do
       desc "Test with Rails #{tag}"
       task :test => [
