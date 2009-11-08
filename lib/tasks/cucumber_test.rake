@@ -5,7 +5,7 @@ namespace :cucumber_test do
   deps = {
     "rails" => ["git://github.com/rails/rails.git", "/vendor/rails"],
     "cucumber" => ["git://github.com/aslakhellesoy/cucumber.git", "/vendor/plugins/cucumber"],
-    "cucumber-rails" => ["git://github.com/dbloete/cucumber-rails.git", "/vendor/plugins/cucumber-rails"]
+    "cucumber_rails" => ["git://github.com/dbloete/cucumber-rails.git", "/vendor/plugins/cucumber-rails"]
   }
 
   deps.each_pair do |name, (repo, path)|
@@ -28,7 +28,7 @@ namespace :cucumber_test do
   end
 
   desc "Update vendored versions of rails and cucumber"
-  task :update => [:update_rails, :update_cucumber]
+  task :update => [:update_rails, :update_cucumber, :update_cucumber_rails]
   
   rails_tags = ["v2.1.0", "v2.1.1", "v2.1.2", "v2.2.0", "v2.2.1", "v2.2.2", "v2.3.2", "v2.3.3", "v2.3.4"]
 
