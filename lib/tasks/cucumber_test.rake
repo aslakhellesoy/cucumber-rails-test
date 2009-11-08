@@ -4,7 +4,8 @@ RUBY_BINARY   = File.join(Config::CONFIG['bindir'], Config::CONFIG['ruby_install
 namespace :cucumber_test do
   deps = {
     "rails" => ["git://github.com/rails/rails.git", "/vendor/rails"],
-    "cucumber" => ["git://github.com/aslakhellesoy/cucumber.git", "/vendor/plugins/cucumber"]
+    "cucumber" => ["git://github.com/aslakhellesoy/cucumber.git", "/vendor/plugins/cucumber"],
+    "cucumber-rails" => ["git://github.com/dbloete/cucumber-rails.git", "/vendor/plugins/cucumber-rails"]
   }
 
   deps.each_pair do |name, (repo, path)|
