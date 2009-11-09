@@ -5,9 +5,9 @@ h2. Test that Cucumber works with Ruby on Rails
 Here is how:
 
 <pre># Install gems
-sudo gem install webrat rspec rspec-rails
-git clone git://github.com/aslakhellesoy/cucumber_rails.git
-cd cucumber_rails
+sudo gem install webrat rspec rspec-rails cucumber-rails
+git clone git://github.com/aslakhellesoy/cucumber-rails-test.git
+cd cucumber-rails-test
 rake
 </pre>
 
