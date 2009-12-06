@@ -22,7 +22,7 @@ namespace :cucumber_test do
     task "update_#{name}" => "vendor_#{name}" do
       Dir.chdir(path) do
         sh "git checkout master"
-        sh "git pull origin master"
+        sh "git pull origin master --tags"
       end
     end
   end
