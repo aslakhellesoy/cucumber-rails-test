@@ -82,7 +82,8 @@ namespace :cucumber_test do
       end
 
       task :install do
-        sh "#{RUBY_BINARY} script/generate cucumber #{ENV['CUCUMBER_GENERATE_OPTS']}"
+        opts = ENV['CUCUMBER_GENERATE_OPTS'] || '--rspec --capybara'
+        sh "#{RUBY_BINARY} script/generate cucumber #{opts}"
       end
 
       task :generate_feature do
