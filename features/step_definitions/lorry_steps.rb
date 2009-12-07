@@ -19,7 +19,7 @@ When /^I delete the 4th lorry and deal with the expected error$/ do
   begin
     When %{I delete the 4th lorry}
     raise "This should have raised an error"
-  rescue Webrat::PageLoadError => expected
+  rescue => expected
   end
 end
 
