@@ -25,16 +25,15 @@ end
 
 Then /^I should see the following lorries:$/ do |expected_lorries_table|
   expected_lorries_table.map_headers!(/name/ => 'Name', /colour/ => 'Colour')
-  expected_lorries_table.diff!(element_at('table').to_table)
-  expected_lorries_table.diff!(table_at('table').to_a) # Check that the old way is still working
+  expected_lorries_table.diff!(tableish('table tr', 'td,th'))
 end
 
 Then /^I should see the following lorries in a definition list:$/ do |expected_lorries_table|
-  expected_lorries_table.diff!(element_at('dl#lorry_dl').to_table)
+  expected_lorries_table.diff!(tableish('dl#lorry_dl dt', lambda{|dt| [dt, dt.next.next]}))
 end
 
 Then /^I should see the following lorries in an ordered list:$/ do |expected_lorries_table|
-  expected_lorries_table.diff!(element_at('ol#lorry_ol').to_table)
+  expected_lorries_table.diff!(tableish('ol#lorry_ol li', lambda{|li| [li]}))
 end
 
 Given /^I have not created any lorries in this scenario$/ do
