@@ -5,7 +5,7 @@ namespace :cucumber_test do
   deps = {
     "rails" => ["git://github.com/rails/rails.git", "/vendor/rails"],
     "cucumber" => ["git://github.com/aslakhellesoy/cucumber.git", "/vendor/plugins/cucumber"],
-    "cucumber_rails" => ["git://github.com/dbloete/cucumber-rails.git", "/vendor/plugins/cucumber-rails"]
+    "cucumber_rails" => ["git://github.com/aslakhellesoy/cucumber-rails.git", "/vendor/plugins/cucumber-rails"]
   }
 
   deps.each_pair do |name, (repo, path)|
