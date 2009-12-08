@@ -10,7 +10,7 @@ end
 
 When /^I delete the (\d+)(?:st|nd|rd|th) lorry$/ do |pos|
   visit lorries_url
-  within("table > tr:nth-child(#{pos.to_i+1})") do
+  within("table tr:nth-child(#{pos.to_i+1})") do
     click_link "Destroy"
   end
 end

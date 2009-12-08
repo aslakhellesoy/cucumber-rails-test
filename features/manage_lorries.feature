@@ -9,6 +9,7 @@ Feature: Manage lorries
     And I press "Create"
     Then I should see "name 1 - this is from before filter"
 
+  @culerity @no-txn
   Scenario: Delete lorry
     Given the following lorries:
       | name   | colour |
@@ -36,7 +37,7 @@ Feature: Manage lorries
     But the previous scenarios have
     Then there should be 0 lorries
 
-  @allow-rescue
+  @allow-rescue @culerity @no-txn
   Scenario: Delete the blue lorry, which is magic and always raises an error, but allow rescue
     Given the following lorries:
       | name   | colour |
