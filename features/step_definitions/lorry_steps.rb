@@ -1,11 +1,10 @@
 Given /I have gone to the new lorry page/ do
   visit "/lorries/new"
-  true.should be_true
 end
 
 Given /^the following lorries:$/ do |lorries|
   Lorry.create!(lorries.hashes)
-  Lorry.should have(lorries.hashes.length).records
+  Then %{there should be #{lorries.hashes.length} lorries}
 end
 
 When /^I delete the (\d+)(?:st|nd|rd|th) lorry$/ do |pos|
@@ -49,5 +48,9 @@ Given /I have 45 pink lorries/ do
 end
 
 Then /^there should be (.*) lorries$/ do |n|
-  Lorry.count.should == n.to_i
+  if defined?(Spec::Rails::Matchers)
+    Lorry.count.should == n.to_i
+  else
+    assert_equal n.to_i, Lorry.count
+  end
 end
