@@ -46,7 +46,12 @@ Feature: Manage lorries
       | name 3 | pink   |
       | name 4 | blue   |
     When I delete the 4th lorry and deal with the expected error
-    Then I should see "rails"
+    Then I should see the following lorries:
+      | name   | colour |
+      | name 1 | green  |
+      | name 2 | yellow |
+      | name 3 | pink   |
+      | name 4 | blue   |
   
   @wip
   Scenario: Delete the blue lorry, which is magic and always raises an error
