@@ -15,5 +15,9 @@ When /I visit a failing page/ do
 end
 
 Then /^the Ruby error message should match '(.*)'$/ do |message|
-  @message.should =~ Regexp.new(message)
+  if defined?(Spec::Rails::Matchers)
+    @message.should =~ Regexp.new(message)
+  else
+    assert_match(Regexp.new(message), @message)
+  end
 end
