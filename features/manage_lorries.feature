@@ -67,3 +67,6 @@ Feature: Manage lorries
   Scenario: This is currently failing
     Given I have 45 pink lorries
 
+  Scenario: This is currently failing
+    Given I have gone to the new lorry page
+    Then I should see "monkey" within ".cage"
